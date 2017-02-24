@@ -1,0 +1,8 @@
+<!-- Using the simple form gem to create a for adding a patient -->
+<%= simple_form_for @patient do |f| %>
+	<%= f.input :name, label: "Patient Name" %>
+	<%= f.input :dob, label: "Date of Birth" %>
+	<%= f.input :address, label: "Address" %>
+	<%= f.input :phone, label: "Phone Number" %>
+	<%= f.button :submit %>
+<% end %>

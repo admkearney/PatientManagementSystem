@@ -1,0 +1,8 @@
+<h2><%= @patient.name %></h2>
+<h3><%= @patient.dob %></h3>
+<p><%= @patient.address %></p>
+<p><%= @patient.phone %></p>
+
+<%= link_to "Back", root_path %>
+<%= link_to "Edit", edit_patient_path(@patient) %>
+<%= link_to "Delete", patient_path(@patient), method: :delete, data: {confirm: "Are you sure?"} %>
