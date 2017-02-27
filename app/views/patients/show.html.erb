@@ -2,6 +2,8 @@
 <h3><%= @patient.dob %></h3>
 <p><%= @patient.address %></p>
 <p><%= @patient.phone %></p>
+<p>Hospital: <%= @patient.clinic.name %><p>
+
 
 <%= link_to "Back", root_path %>
 <%= link_to "Edit", edit_patient_path(@patient) %>

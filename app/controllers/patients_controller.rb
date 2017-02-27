@@ -3,18 +3,26 @@ class PatientsController < ApplicationController
 
 
 	def index
-		@patients = Patient.all.order("created_at DESC")
+		if params[:clinic].blank?
+			@patients = Patient.all.order("created_at DESC")
+		else
+			@clinic_id = Clinic.find_by(name: params[:clinic]).id
+			@patients = Patient.where(:clinic_id => @clinic_id).order("created_at DESC")
+		end
 	end
 
 	def show
 	end
 
 	def new
-		@patient = Patient.new
+		#create the patient from the current user
+		@patient = current_user.patients.build
+		@clinics = Clinic.all.map{ |c| [c.name, c.id]}
 	end
 
 	def create
-		@patient = Patient.new(patient_params)
+		@patient = current_user.patients.build(patient_params)
+		@patient.clinic_id = params[:clinic_id]
 
 		if @patient.save
 			redirect_to root_path
@@ -24,9 +32,11 @@ class PatientsController < ApplicationController
 	end
 
 	def edit
+		@clinics = Clinic.all.map{ |c| [c.name, c.id]}
 	end
 
 	def update
+		@clinics = Clinic.all.map{ |c| [c.name, c.id]}
 		if @patient.update(patient_params)
 			redirect_to patient_path(@patient)
 		else
@@ -43,7 +53,7 @@ class PatientsController < ApplicationController
 
 		def patient_params
 			#define the patient information
-			params.require(:patient).permit(:name, :dob, :address, :phone)
+			params.require(:patient).permit(:name, :dob, :address, :phone, :clinic_id)
 		end
 
 		def find_patient

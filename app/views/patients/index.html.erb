@@ -1,6 +1,10 @@
-<!-- Display all patients -->
-<% @patients.each do |patient| %>
-	<h2><%= link_to patient.name, patient_path(patient) %></h2>
-<% end %>
+<h1 class="current-clinic"><%= params[:clinic] %></h1>
 
-<%= link_to "Add Patient", new_patient_path %>
+<% if @patients.count == 0 %>
+	<h2>There are currently no patients registered in this hospital</h2>
+<% else %>
+	<!-- Display all patients -->
+	<% @patients.each do |patient| %>
+		<h2><%= link_to patient.name, patient_path(patient) %></h2>
+	<% end %>
+<% end %>

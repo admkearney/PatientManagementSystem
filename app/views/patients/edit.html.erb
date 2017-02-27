@@ -1,3 +1,11 @@
 <h1>Edit Patient</h1>
 
-<%= render 'form' %>
+<!-- Using the simple form gem to create a for adding a patient -->
+<%= simple_form_for @patient, :html => { :multipart => true } do |f| %>
+	<%= f.select :clinic_id, @clinics %>
+	<%= f.input :name, label: "Patient Name" %>
+	<%= f.input :dob, label: "Date of Birth", start_year: Date.today.year - 110, end_year: Date.today.year %>
+	<%= f.input :address, label: "Address" %>
+	<%= f.input :phone, label: "Phone Number" %>
+	<%= f.button :submit %>
+<% end %>
