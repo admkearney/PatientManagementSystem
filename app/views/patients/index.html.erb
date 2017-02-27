@@ -1,10 +1,20 @@
 <h1 class="current-clinic"><%= params[:clinic] %></h1>
 
-<% if @patients.count == 0 %>
-	<h2>There are currently no patients registered in this hospital</h2>
-<% else %>
-	<!-- Display all patients -->
-	<% @patients.each do |patient| %>
-		<h2><%= link_to patient.name, patient_path(patient) %></h2>
+<% if user_signed_in? %>
+	<% if @patients.count == 0 %>
+		<h2>There are currently no patients registered in this hospital</h2>
+	<% else %>
+		<!-- Display all patients -->
+		<div class="well">
+			<% @patients.each do |patient| %>
+				<h2><%= link_to patient.name, patient_path(patient) %></h2>
+			<% end %>
+		</div>
 	<% end %>
+<% else %>
+	<div class="well">
+		<h2>Weclome to Smart Health Care Patient Management Systems</h2>
+		<h3> Please log in or registers to contine </h3>
+	</div>
 <% end %>
+
