@@ -4,7 +4,7 @@ class PatientsController < ApplicationController
 
 	def index
 		if params[:clinic].blank?
-			@patients = Patient.all.order("created_at DESC")
+			@patients = Patient.all.order("created_at DESC").where(["name LIKE ?","%#{params[:search]}%"])
 		else
 			@clinic_id = Clinic.find_by(name: params[:clinic]).id
 			@patients = Patient.where(:clinic_id => @clinic_id).order("created_at DESC")
