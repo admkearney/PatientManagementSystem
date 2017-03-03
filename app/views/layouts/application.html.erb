@@ -22,28 +22,37 @@
  				<% end %>
  			</ul>
 
-
-
- 			<ul class="nav navbar-nav navbar-right">
-
- 				<% if user_signed_in? %>
-	 				<li class="dropdown">
-	 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clincs <span class="caret"></span></a>
-	 					<ul class="dropdown-menu" role="menu">
-	 						<% Clinic.all.each do |clinic| %>
-	 							<li class="<%= 'active' if params[:clinic] == clinic.name %>">
-	 								<%= link_to clinic.name, patients_path(clinic: clinic.name), class: "link" %>
-	 							</li>
-	 						<% end %> 	
-	 					</ul>
-	 				</li>
-	 			<% end %>
- 				<!-- only show the Add Patient link if user is logged in -->
- 				<% if user_signed_in? %>
- 					<li><%= link_to "Add Patient", new_patient_path %></li>
- 				<% end %>
- 			</ul>
-
+ 		
+ 			<!-- Only show clinic select, search bar and add patient option if user is logged in -->
+ 			<% if user_signed_in? %>
+	 			<ul class="nav navbar-nav navbar-right">
+	 				<!-- Clinic Dropdown -->
+					<li class="dropdown">
+		 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clincs <span class="caret"></span></a>
+		 				<ul class="dropdown-menu" role="menu">
+		 					<% Clinic.all.each do |clinic| %>
+		 						<li class="<%= 'active' if params[:clinic] == clinic.name %>">
+		 							<%= link_to clinic.name, patients_path(clinic: clinic.name), class: "link" %>
+		 						</li>
+		 					<% end %> 	
+		 				</ul>
+		 			</li>
+		 			<!-- Add Patient -->
+	 				<li><%= link_to "Add Patient", new_patient_path %></li>
+	 			</ul>
+		
+				<!-- Search Bar -->
+				<ul class="nav navbar-nav navbar-right">
+					<%= form_tag patients_path, class:'navbar-form', :method => 'get' do %>
+						<div class="input-group">
+							<%= text_field_tag :search, params[:search], class:'form-control' %>
+							<div class="input-group-btn">
+								<%= submit_tag "Search", class: 'btn btn-info' %>
+							</div>	
+						</div>
+					<% end %>
+				</ul>
+			<% end %>
 		</div>
 	</nav>
 
