@@ -1,17 +1,15 @@
-<h1 class="current-clinic"><%= params[:clinic] %></h1>
-
-
+<h2 class="current-clinic"><%= params[:clinic] %></h2>
 
 <% if user_signed_in? %>
 	<% if @patients.count == 0 %>
 		<h2>There are currently no patients registered in this hospital</h2>
 	<% else %>
 		<!-- Display all patients -->
-		<div class="well">
+		<ul class="list-group">
 			<% @patients.each do |patient| %>
-				<h2><%= link_to patient.name, patient_path(patient) %></h2>
+				<li class="list-group-item"><%= link_to patient.name, patient_path(patient) %></li>
 			<% end %>
-		</div>
+		</ul>
 	<% end %>
 <% else %>
 	<div class="well">
