@@ -5,6 +5,11 @@
 <p>Hospital: <%= @patient.clinic.name %><p>
 
 
+<%= link_to "Add Request", new_patient_request_path(@patient) %>
 <%= link_to "Back", root_path %>
 <%= link_to "Edit", edit_patient_path(@patient) %>
 <%= link_to "Delete", patient_path(@patient), method: :delete, data: {confirm: "Are you sure?"} %>
+
+<div class="col-md-4">
+	<%= render @patient.requests %>
+</div>	

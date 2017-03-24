@@ -4,12 +4,32 @@
 	<% if @patients.count == 0 %>
 		<h2>There are currently no patients registered in this hospital</h2>
 	<% else %>
-		<!-- Display all patients -->
+
+		<!-- Display all patients (old)
 		<ul class="list-group">
 			<% @patients.each do |patient| %>
 				<li class="list-group-item"><%= link_to patient.name, patient_path(patient) %></li>
 			<% end %>
-		</ul>
+		</ul> -->
+
+		<table class="table table-bordered table-hover">
+			<thead class="thead-default">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Date of Birth</th>
+				</tr>
+			</thead>
+			<tbody>
+					<% @patients.each do |patient| %>
+						<tr>
+							<td><%= link_to patient.id, patient_path(patient) %></td>
+							<td><%= link_to patient.name, patient_path(patient) %></td>
+							<td><%= link_to patient.dob, patient_path(patient) %></td>
+						</tr>
+					<% end %>
+			</tbody>
+		</table>
 	<% end %>
 <% else %>
 	<div class="well">
