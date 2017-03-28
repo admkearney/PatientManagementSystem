@@ -11,5 +11,7 @@
 <%= link_to "Delete", patient_path(@patient), method: :delete, data: {confirm: "Are you sure?"} %>
 
 <div class="col-md-4">
-	<%= render @patient.requests %>
+	<div class="requests">
+		<%= render @patient.requests %>
+	</div>
 </div>	

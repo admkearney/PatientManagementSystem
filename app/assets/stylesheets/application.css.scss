@@ -89,4 +89,34 @@
 
 .current-clinic{
   text-align: center;
+  padding-bottom:10px;
+}
+
+.requests {
+
+
+  margin-top: 40px;
+
+  h1 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 2em;
+  }
+
+  .request {
+    border-bottom: 1px solid gainsboro;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+
+    .request-comment {
+      font-size: 1.05em;
+      line-height: 1.5;
+    }
+
+  }
+
+  .new-request {
+    padding-top: 8px;
+  }
+
 }

@@ -1,0 +1,7 @@
+<h1>Edit Request</h1>
+<%= simple_form_for([@patient, @request]) do |f| %>
+	<%= f.input :department %>
+	<%= f.input :comment, as: :text, :input_html => { :cols => 5, :rows => 5 } %>
+	<%= f.input :appointment %>
+	<%= f.button :submit %>
+<% end %>

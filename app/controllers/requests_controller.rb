@@ -1,5 +1,7 @@
 class RequestsController < ApplicationController
 	before_action :find_patient
+	before_action :find_request, only: [:edit, :update, :destroy]
+	before_action :authenticate_user!, only: [:new, :edit]
 
 	def new
 		@request = Request.new
@@ -18,6 +20,24 @@ class RequestsController < ApplicationController
 		end
 	end
 
+	def edit
+	end
+
+	def update
+		@request = Request.find(params[:id])
+
+		if @request.update(request_params)
+			redirect_to patient_path(@patient)
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@request.destroy
+		redirect_to patient_path(@patient)
+	end
+
 	private
 
 		def request_params
@@ -26,6 +46,10 @@ class RequestsController < ApplicationController
 
 		def find_patient
 			@patient = Patient.find(params[:patient_id])
+		end
+
+		def find_request
+			@request = Request.find(params[:id])
 		end
 
 end

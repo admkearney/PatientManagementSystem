@@ -2,3 +2,12 @@
 <p><%= request.department %></p>
 <p><%= request.comment %></p>
 <p><%= request.appointment %></p>
+
+<% if user_signed_in? %>
+	<!-- Allow user to delete and edit requests if they made them-->
+	<% if request.user_id == current_user.id %>
+		<%= link_to "Edit", edit_patient_request_path(request.patient, request) %>
+		<%= link_to "Delete", patient_request_path(request.patient, request), method: :delete, data: {
+			confirm: "Are you sure?" } %>
+	<% end %>
+<% end %>
