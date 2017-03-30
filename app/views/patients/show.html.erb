@@ -1,17 +1,24 @@
-<h2><%= @patient.name %></h2>
-<h3><%= @patient.dob %></h3>
-<p><%= @patient.address %></p>
-<p><%= @patient.phone %></p>
-<p>Hospital: <%= @patient.clinic.name %><p>
+<div class="well">
+
+<h2>Name: <%= @patient.name %></h2>
+<h3>Date of Brith: <%= @patient.dob %></h3>
+<p>Address: <%= @patient.address %></p>
+<p>Phone: <%= @patient.phone %></p>
+<p>Hospital: <%= @patient.clinic.name %></p>
+
+<%= link_to "Add Request", new_patient_request_path(@patient), class: "btn btn-info" %>
+<%= link_to "Back", root_path , class: "btn btn-info" %>
+<%= link_to "Edit", edit_patient_path(@patient), class: "btn btn-info" %>
+<%= link_to "Delete", patient_path(@patient), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+
+</div>
 
 
-<%= link_to "Add Request", new_patient_request_path(@patient) %>
-<%= link_to "Back", root_path %>
-<%= link_to "Edit", edit_patient_path(@patient) %>
-<%= link_to "Delete", patient_path(@patient), method: :delete, data: {confirm: "Are you sure?"} %>
+
 
 <div class="col-md-4">
 	<div class="requests">
+		<h3>Patient Requests</h3>
 		<%= render @patient.requests %>
 	</div>
 </div>	
