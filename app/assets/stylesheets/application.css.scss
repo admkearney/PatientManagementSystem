@@ -92,9 +92,56 @@
   padding-bottom:10px;
 }
 
+@mixin background-tile {
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  padding: 1.5em 1.25em;
+}
+
+
+.patient-info {
+  @include background-tile;
+
+  .patient-title {
+    margin-top: 0;
+    font-size: 2em;
+  }
+
+  .avg-rating {
+    font-size: 1.5em;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+
+  .number-of-reviews {
+    font-size: 0.85em;
+    font-style: italic;
+  }
+
+  .patient-author {
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    span {
+      font-size: 0.80em;
+    } 
+  }
+
+  .patient-desc {
+    font-size: 1.05em;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+}
+
+
 .requests {
 
-
+  @include background-tile;
   margin-top: 40px;
 
   h1 {
@@ -119,4 +166,34 @@
     padding-top: 8px;
   }
 
+}
+
+.btn-custom {
+  color: darken(#f1c40f, 5%);
+  background-color: #fff;
+  border: 1px solid darken(#f1c40f, 5%);
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-family: 'Ubuntu', sans-serif;
+  &:hover {
+    text-decoration: none;
+    background-color: darken(#f1c40f, 5%);
+    color: #fff;
+    transition: 0.5s;
+  }
+}
+
+.btn-custom2 {
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #222;
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-family: 'Ubuntu', sans-serif;
+  &:hover {
+    text-decoration: none;
+    background-color: #333;
+    color: #fff;
+    transition: 0.5s;
+  } 
 }

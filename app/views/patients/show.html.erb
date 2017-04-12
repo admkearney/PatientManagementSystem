@@ -1,17 +1,31 @@
-<h2><%= @patient.name %></h2>
-<h3><%= @patient.dob %></h3>
-<p><%= @patient.address %></p>
-<p><%= @patient.phone %></p>
-<p>Hospital: <%= @patient.clinic.name %><p>
 
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6">
+        	<h2><u>Patient Details</u></h2>
+			<h3>Name: <%= @patient.name %></h3>
+			<h3>Date of Birth: <%= @patient.dob %></h3>
+			<p>Address: <%= @patient.address %></p>
+			<p>Phone: <%= @patient.phone %></p>
+			<p>Hospital: <%= @patient.clinic.name %></p>
 
-<%= link_to "Add Request", new_patient_request_path(@patient) %>
-<%= link_to "Back", root_path %>
-<%= link_to "Edit", edit_patient_path(@patient) %>
-<%= link_to "Delete", patient_path(@patient), method: :delete, data: {confirm: "Are you sure?"} %>
+			<%= link_to "Back", root_path, class: "btn btn-info" %>
+			<%= link_to "Add Request", new_patient_request_path(@patient), class: "btn btn-info" %>
+			<br></br>
+			<%= link_to "Edit", edit_patient_path(@patient), class: "btn btn-info" %>
+			<%= link_to "Delete", patient_path(@patient), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-info" %>
+		</div>
 
-<div class="col-md-4">
-	<div class="requests">
-		<%= render @patient.requests %>
+		<div class="col-md-4">
+			<h2><u>Patient Requests</u></h2>
+			<div class="col-xs-20">
+				<% if @patient.requests.count == 0 %>
+					<h3>There are no requests for this patient</h3>
+				<% else %>
+					<%= render @patient.requests %>
+				<% end %>
+			</div>
+		</div>
 	</div>
-</div>	
+</div>
+
