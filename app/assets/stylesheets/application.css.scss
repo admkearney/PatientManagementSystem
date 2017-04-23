@@ -16,6 +16,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Asar');
 
 .navbar-default {
   background-color: #3a91c3;
@@ -148,6 +149,7 @@
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 2em;
+    font-family: 'Asar', serif;
   }
 
   .request {
@@ -168,32 +170,76 @@
 
 }
 
-.btn-custom {
-  color: darken(#f1c40f, 5%);
-  background-color: #fff;
-  border: 1px solid darken(#f1c40f, 5%);
-  padding: 8px 20px;
-  border-radius: 5px;
-  font-family: 'Ubuntu', sans-serif;
-  &:hover {
-    text-decoration: none;
-    background-color: darken(#f1c40f, 5%);
-    color: #fff;
-    transition: 0.5s;
+
+.col-border
+  {
+    content: "";
+    postion: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 25px;
+    
+    padding: 10px;
   }
+
+.centerBlock {
+  display: table;
+  margin: auto;
 }
 
-.btn-custom2 {
-  color: #333;
-  background-color: #fff;
-  border: 1px solid #222;
-  padding: 8px 20px;
-  border-radius: 5px;
-  font-family: 'Ubuntu', sans-serif;
-  &:hover {
-    text-decoration: none;
-    background-color: #333;
-    color: #fff;
-    transition: 0.5s;
-  } 
+/* Signup/Login form styles */
+
+.signup-form {
+  @include background-tile;
+
+  h2 {
+    margin-top: 0;
+  }
+
+}
+
+.login-form {
+  @include background-tile;
+
+  h2 {
+    margin-top: 0;
+  }
+
+}
+
+.new-patient-form {
+  @include background-tile;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  #clinic_id {
+    margin-bottom: 10px;
+  }
+
+}
+
+.edit-patient-form {
+
+  @include background-tile;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  #patient_clinic_id {
+    margin-bottom: 10px;
+  }
+
+
+}
+
+.new-request-form, .edit-request-form {
+  @include background-tile;
+
+  h1 {
+    margin-top: 0;
+  }
+
 }

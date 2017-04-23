@@ -1,0 +1,19 @@
+<table class="table table-bordered table-hover">
+			<thead class="thead-default">
+				<tr>
+					<th>Date</th>
+					<th>Comment</th>
+					<th>Hospital</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @requests.each do |request| %>
+					<tr>
+						<td><%= request.appointment%></td>
+						<td><%= request.comment%></td>
+						<td><%= request.hospital %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+

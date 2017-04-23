@@ -3,9 +3,23 @@ class RequestsController < ApplicationController
 	before_action :find_request, only: [:edit, :update, :destroy]
 	before_action :authenticate_user!, only: [:new, :edit]
 
+
+	def index
+		if params[:clinic].blank?
+			@requests = Request.all
+		else
+			@clinic_id = Clinic.find_by(name: params[:clinic]).id
+			@requests = Request.where(:hospital == @clinic).order("created_at DESC")
+		end
+	
+	end
+
 	def new
 		@request = Request.new
 		@clinics = Clinic.all.map{ |c| [c.name, c.id]}	
+	end
+
+	def show
 	end
 
 	def create

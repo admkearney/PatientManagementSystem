@@ -1,4 +1,3 @@
-<!-- Using the simple form gem to create a for adding a patient -->
 <%= simple_form_for @patient, :html => { :multipart => true } do |f| %>
 	<%= select_tag(:clinic_id, options_for_select(@clinics), :prompt => "Select a clinic") %>
 	<br></br>
