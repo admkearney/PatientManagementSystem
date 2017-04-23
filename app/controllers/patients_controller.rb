@@ -1,6 +1,7 @@
 class PatientsController < ApplicationController
 	before_action :find_patient, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, only: [:new, :edit]
+	
 
 
 	def index

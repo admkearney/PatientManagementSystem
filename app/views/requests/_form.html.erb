@@ -1,5 +1,5 @@
 <%= simple_form_for([@patient, @patient.requests.build ]) do |f| %>
-	<%= select_tag(:hospital, options_for_select(@clinics), :prompt => "Select a clinic") %>
+	<%= select_tag(:clinic_id, options_for_select(@clinics), :prompt => "Select a clinic") %>
 
 	<br></br>
 	<%= f.input :department %>

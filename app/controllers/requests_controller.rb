@@ -9,7 +9,7 @@ class RequestsController < ApplicationController
 			@requests = Request.all
 		else
 			@clinic_id = Clinic.find_by(name: params[:clinic]).id
-			@requests = Request.where(:hospital == @clinic).order("created_at DESC")
+			@requests = Request.where(:clinic_id => @clinic_id).order("appointment DESC")
 		end
 	
 	end
@@ -26,6 +26,7 @@ class RequestsController < ApplicationController
 		@request = Request.new(request_params)
 		@request.patient_id = @patient.id
 		@request.user_id = current_user.id
+		@request.clinic_id = params[:clinic_id]
 
 		if @request.save
 			redirect_to patient_path(@patient)
@@ -38,6 +39,7 @@ class RequestsController < ApplicationController
 	end
 
 	def update
+		@clinics = Clinic.all.map{ |c| [c.name, c.id]}
 		@request = Request.find(params[:id])
 
 		if @request.update(request_params)
@@ -55,7 +57,7 @@ class RequestsController < ApplicationController
 	private
 
 		def request_params
-			params.require(:request).permit(:hospital, :department, :comment, :appointment)
+			params.require(:request).permit(:hospital, :department, :comment, :appointment, :clinic_id)
 		end
 
 		def find_patient

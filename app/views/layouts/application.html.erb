@@ -43,7 +43,7 @@
 		 				<ul class="dropdown-menu" role="menu">
 		 					<% Clinic.all.each do |clinic| %>
 		 						<li class="<%= 'active' if params[:clinic] == clinic.name %>">
-		 							<%= link_to clinic.name, requests_path(clinic: clinic.name, patient_id: 11), class: "link" %>
+		 							<%= link_to clinic.name, requests_path(clinic: clinic.name, patient_id: 12), class: "link" %>
 		 						</li>
 		 					<% end %> 	
 		 				</ul>
@@ -51,8 +51,6 @@
 
 		 			<!-- Add Patient -->
 	 				<li><%= link_to "Add Patient", new_patient_path %></li>
-	 				
-	 				<li><%= link_to "Requests", requests_path(patient_id: 11) %></li>
 	 				
 	 			</ul>
 		

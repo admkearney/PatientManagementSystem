@@ -1,18 +1,34 @@
+<h2 class="current-clinic">Requests at <%= params[:clinic] %></h2>
+
 <table class="table table-bordered table-hover">
 			<thead class="thead-default">
 				<tr>
 					<th>Date</th>
 					<th>Comment</th>
-					<th>Hospital</th>
+					<th>Department</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @requests.each do |request| %>
-					<tr>
-						<td><%= request.appointment%></td>
-						<td><%= request.comment%></td>
-						<td><%= request.hospital %></td>
-					</tr>
+					<% if request.appointment == Date.today %>
+						<tr class="bg-danger">
+							<td><%= link_to request.appointment, patient_path(request.patient_id) %></td>
+							<td><%= link_to request.comment, patient_path(request.patient_id) %></td>
+							<td><%= link_to request.department, patient_path(request.patient_id) %></td>
+						</tr>
+					<% elsif request.appointment > Date.today %>
+						<tr class="bg-success">
+							<td><%= link_to request.appointment, patient_path(request.patient_id) %></td>
+							<td><%= link_to request.comment, patient_path(request.patient_id) %></td>
+							<td><%= link_to request.department, patient_path(request.patient_id) %></td>
+						</tr>
+					<% else %>
+						<tr>
+							<td><%= link_to request.appointment, patient_path(request.patient_id) %></td>
+							<td><%= link_to request.comment, patient_path(request.patient_id) %></td>
+							<td><%= link_to request.department, patient_path(request.patient_id) %></td>
+						</tr>
+					<% end %>
 				<% end %>
 			</tbody>
 		</table>
